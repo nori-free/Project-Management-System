@@ -1,0 +1,1 @@
+export { hasSomeEmptyData } from './condition'

@@ -1,7 +1,7 @@
 <template>
     <v-app id="sandbox">
     <app-header :primaryDrawer="primaryDrawer" />
-    <app-sidemenu :primaryDrawer="primaryDrawer" :items="items" />
+    <app-sidemenu :primaryDrawer="primaryDrawer" />
 
     <v-main>
       <v-container fluid>
@@ -39,14 +39,6 @@
         type: 'default (no property)',
         clipped: true,
       },
-      items: [
-        {title: 'Dashboard', icon: 'mdi-view-dashboard', href: '/'},
-        {title: 'Wiki', icon: 'mdi-text-box-search', href: '/wiki'},
-        {title: 'Notifications', icon: 'mdi-bell', href: '/notifications'},
-        {title: 'Dialy report', icon: 'mdi-file-document-edit', href: '/dialy-report'},
-        {title: 'Todo', icon: 'mdi-format-list-checks', href: '/todo'},
-        {title: 'Test', icon: 'mdi-ab-testing', href: '/helloworld'}
-      ],
     }),
   }
 </script>
