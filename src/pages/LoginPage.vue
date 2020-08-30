@@ -111,15 +111,18 @@
     }),
 
     methods: {
-      validate () {
+      async validate () {
         this.isLoading = true
         console.log(this.email, this.password)
-        Authentication.userLogin(this.email, this.password).then((status, result) => {
-          // this.$store.dispatch
+        await Authentication.userLogin(this.email, this.password).then((result) => {
+          console.log('result', result)
           this.$store.dispatch('doLogin', result)
-          console.log(status)
+          console.log(this.$store.state.user)
           console.log(result)
           this.isLoading = false
+          // setTimeout(() => {
+          //   location.href = '/'
+          // }, 1000)
           location.href = '/'
         })
       },

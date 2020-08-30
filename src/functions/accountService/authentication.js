@@ -22,6 +22,7 @@ import {
     // CognitoUserAttribute,
     CognitoUser
 } from 'amazon-cognito-identity-js'
+import store from '../../store'
 
 require('amazon-cognito-js')
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js')
@@ -99,25 +100,27 @@ export const Authentication = {
             Pool: userPool
         }
         const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData)
+        console.log(authenticationData, userData)
 
-        await cognitoUser.authenticateUser(authenticationDetails, {
-            onSuccess: result => {
-                console.log(result)
-                // 成功処理
-                return {status: true, message: result }
-            },
-            onFailure: err => {
-                // 失敗処理
-                console.error(err)
-                return { status: false, message: err }
-            }
+        return await new Promise((resolve,) => {
+            cognitoUser.authenticateUser(authenticationDetails, {
+                onSuccess: (result) => {
+                    // 成功処理
+                    resolve(result)
+                },
+                onFailure: err => {
+                    // 失敗処理
+                    console.error(err)
+                }
+            })
         })
     },
 
-    // // ログアウトアクション
-    // userLogout: (email) => {
-    //     //
-    // },
+    // ログアウトアクション
+    userLogout: () => {
+        store.dispatch('doLogout')
+        location.href = '/logout'
+  },
 
     // // パスワード初期化アクション
     // passwordReset: (email) => {

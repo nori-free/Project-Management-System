@@ -10,12 +10,12 @@ import VerifyPage from '../pages/VerifyPage.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'dashboard',
-      component: DashboardPage
+      component: DashboardPage,
     },
     {
         path: '/wiki',
@@ -53,3 +53,5 @@ export default new Router({
     }
   ]
 })
+
+export default router
